@@ -1,0 +1,548 @@
+{
+	"info": {
+		"_postman_id": "63ecc612-dcb1-4225-98c1-4c1acc45f6fc",
+		"name": "TadoX API Collection",
+		"description": "Collection of API requests for TadoX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "125168"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "tado-web-app"
+						},
+						{
+							"key": "client_secret",
+							"value": "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "scope",
+							"value": "home.user"
+						},
+						{
+							"key": "username",
+							"value": "{{TADO_USERNAME}}"
+						},
+						{
+							"key": "password",
+							"value": "{{TADO_PASSWORD}}"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://auth.tado.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"auth",
+						"tado",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Homes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"homeId\", jsonData.homes[0].id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/me",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Home Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rooms",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/rooms?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"rooms"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Features",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/features?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"features"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Room Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"rooms",
+						"{{roomId}}"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rooms and Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/roomsAndDevices?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"roomsAndDevices"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Manual Control",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"setting\":{\"power\":\"OFF\",\"isBoost\":false,\"temperature\":null},\"termination\":{\"type\":\"TIMER\",\"durationInSeconds\":600}}"
+				},
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"rooms",
+						"{{roomId}}",
+						"manualControl"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Open Window",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/openWindow?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"rooms",
+						"{{roomId}}",
+						"openWindow"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Open Window",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/openWindow?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"rooms",
+						"{{roomId}}",
+						"openWindow"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Boost",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/quickActions/boost?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"quickActions",
+						"boost"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resume Schedule",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/quickActions/resumeSchedule?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"quickActions",
+						"resumeSchedule"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Device Temperature Offset",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"temperatureOffset\":2}"
+				},
+				"url": {
+					"raw": "https://hops.tado.com/homes/{{homeId}}/roomsAndDevices/devices/{{deviceId}}?ngsw-bypass=true",
+					"protocol": "https",
+					"host": [
+						"hops",
+						"tado",
+						"com"
+					],
+					"path": [
+						"homes",
+						"{{homeId}}",
+						"roomsAndDevices",
+						"devices",
+						"{{deviceId}}"
+					],
+					"query": [
+						{
+							"key": "ngsw-bypass",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TADO_USERNAME",
+			"value": "put-your-tado-username",
+			"type": "string"
+		},
+		{
+			"key": "TADO_PASSWORD",
+			"value": "put-your-tado-password",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "set-by-collection",
+			"type": "string"
+		},
+		{
+			"key": "homeId",
+			"value": "set-by-collection",
+			"type": "string"
+		}
+	]
+}
