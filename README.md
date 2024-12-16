@@ -1,6 +1,22 @@
 # TadoX API Collection
 
-This is a collection of API requests for TadoX. The collection includes all the necessary APIs to interact with the Tado system.
+🌟 New GitHub Repository: Tado X Postman Collection 🌟
+Hey Tado Community! 👋
+
+I'm excited to share a new GitHub repository I've created: TadoX Postman Collection. This collection is designed to help you make API calls compatible with Tado X valves. 🚀
+
+🔧 What's Included:
+
+A comprehensive set of Postman requests for interacting with Tado X valves.
+Easy-to-use examples to get you started quickly.
+💡 Note: I don't have a thermostat or temperature sensors to verify other behaviors, but the calls should be easily adaptable. If you have these devices, feel free to test and tweak the collection as needed!
+
+📄 Documentation: The documentation (README.md) is generated with AI, so there might be some errors. If you find any, please [open an issue](https://github.com/Gedhi/tadox-postman-collection/issues) for correction.
+
+🤝 Contribute: Share the repository with anyone who might find it useful and feel free to suggest changes through [Pull Requests](https://github.com/Gedhi/tadox-postman-collection/pulls). Let's make this collection even better together!
+
+Happy coding! 💻✨
+
 
 ## Installation
 
@@ -249,15 +265,16 @@ For APIs with parameters such as `roomId` or `deviceId`, the values should be re
   },
   "nextScheduleChange": {
     "start": "2023-10-01T12:00:00Z",
-    "setting": {
-      "power": "ON",
-      "temperature": 22
-    }
-  },
-  "nextTimeBlock": {
-    "start": "2023-10-01T12:00:00Z"
-  },
-  "balanceControl": null
+      "setting": {
+        "power": "ON",
+        "temperature": 22
+      }
+    },
+    "nextTimeBlock": {
+      "start": "2023-10-01T12:00:00Z"
+    },
+    "balanceControl": null
+  }
 }
 ```
 
