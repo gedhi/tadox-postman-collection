@@ -499,6 +499,254 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Weather",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/weather",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"weather"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mobile Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/mobileDevices",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"mobileDevices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mobile Device Settings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/mobileDevices/{{deviceId}}/settings",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"mobileDevices",
+						"{{deviceId}}",
+						"settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Installations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/installations",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"installations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/devices",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Device Temperature Offset",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/devices/{{deviceId}}/temperatureOffset",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"devices",
+						"{{deviceId}}",
+						"temperatureOffset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Device Humidity Offset",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/devices/{{deviceId}}/humidityOffset",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"devices",
+						"{{deviceId}}",
+						"humidityOffset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Device Humidity Offset",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"humidityOffset\":2}"
+				},
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/devices/{{deviceId}}/humidityOffset",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"devices",
+						"{{deviceId}}",
+						"humidityOffset"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -541,6 +789,11 @@
 		},
 		{
 			"key": "homeId",
+			"value": "set-by-collection",
+			"type": "string"
+		},
+		{
+			"key": "deviceId",
 			"value": "set-by-collection",
 			"type": "string"
 		}

@@ -43,6 +43,10 @@ The workflow always starts with the `Login` request. The token is automatically 
 
 For APIs with parameters such as `roomId` or `deviceId`, the values should be retrieved from the `Get Rooms` or `Get Rooms and Devices` requests.
 
+## Additional Resources
+
+For those using Python, you might find the [PyTado](https://github.com/svobop/PyTado/tree/master) repository useful. It provides a comprehensive set of tools for interacting with the Tado API using Python.
+
 ## API Endpoints
 
 ### Login
@@ -442,6 +446,189 @@ For APIs with parameters such as `roomId` or `deviceId`, the values should be re
 ```json
 {
   "temperatureOffset": 2
+}
+```
+
+**Output**:
+```json
+{
+  "status": "success"
+}
+```
+
+### Get Weather
+
+**Description**: Retrieves the weather information for a specific home.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/weather`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+{
+  "solarIntensity": {
+    "percentage": 50
+  },
+  "outsideTemperature": {
+    "celsius": 15.5,
+    "fahrenheit": 59.9
+  }
+}
+```
+
+### Get Mobile Devices
+
+**Description**: Retrieves the list of mobile devices associated with a specific home.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/mobileDevices`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+[
+  {
+    "id": "123456",
+    "name": "John's iPhone",
+    "settings": {
+      "geoTrackingEnabled": true
+    }
+  }
+]
+```
+
+### Get Mobile Device Settings
+
+**Description**: Retrieves the settings of a specific mobile device.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/mobileDevices/{{deviceId}}/settings`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+{
+  "geoTrackingEnabled": true
+}
+```
+
+### Get Installations
+
+**Description**: Retrieves the list of installations for a specific home.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/installations`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+[
+  {
+    "id": "123456",
+    "type": "HEATING",
+    "installationDate": "2023-01-01T12:00:00Z"
+  }
+]
+```
+
+### Get Devices
+
+**Description**: Retrieves the list of devices for a specific home.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/devices`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+[
+  {
+    "id": "123456",
+    "deviceType": "VA01",
+    "serialNo": "123456789",
+    "shortSerialNo": "123456",
+    "currentFwVersion": "54.8",
+    "connectionState": {
+      "value": true,
+      "timestamp": "2023-10-01T12:00:00Z"
+    },
+    "characteristics": {
+      "capabilities": ["INSIDE_TEMPERATURE_MEASUREMENT"],
+      "batteryState": "NORMAL"
+    }
+  }
+]
+```
+
+### Get Device Temperature Offset
+
+**Description**: Retrieves the temperature offset for a specific device.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/devices/{{deviceId}}/temperatureOffset`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+{
+  "celsius": 2.0,
+  "fahrenheit": 3.6
+}
+```
+
+### Get Device Humidity Offset
+
+**Description**: Retrieves the humidity offset for a specific device.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/devices/{{deviceId}}/humidityOffset`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+{
+  "percentage": 5
+}
+```
+
+### Update Device Humidity Offset
+
+**Description**: Updates the humidity offset for a specific device.
+
+**Method**: PATCH
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/devices/{{deviceId}}/humidityOffset`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+- `Content-Type: application/json`
+
+**Body**:
+```json
+{
+  "humidityOffset": 2
 }
 ```
 
