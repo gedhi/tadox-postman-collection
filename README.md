@@ -638,3 +638,86 @@ For those using Python, you might find the [PyTado](https://github.com/svobop/Py
   "status": "success"
 }
 ```
+
+### Get Day Report
+
+**Description**: Retrieves the day report for a specific zone.
+
+**Method**: GET
+
+**URL**: `https://my.tado.com/api/v2/homes/{{homeId}}/zones/{{zoneId}}/dayReport?date={{date}}&ngsw-bypass=true`
+
+**Headers**:
+- `Authorization: Bearer {{access_token}}`
+
+**Output**:
+```json
+{
+  "zoneType": "HEATING",
+  "interval": {
+    "from": "2024-12-17T22:45:00.000Z",
+    "to": "2024-12-18T08:34:25.968Z"
+  },
+  "hoursInDay": 24,
+  "measuredData": {
+    "measuringDeviceConnected": {
+      "timeSeriesType": "dataIntervals",
+      "valueType": "boolean",
+      "dataIntervals": [
+        {
+          "from": "2024-12-17T22:45:00.000Z",
+          "to": "2024-12-18T08:34:25.968Z",
+          "value": true
+        }
+      ]
+    },
+    "insideTemperature": {
+      "timeSeriesType": "dataPoints",
+      "valueType": "temperature",
+      "min": {
+        "celsius": 16.37,
+        "fahrenheit": 61.47
+      },
+      "max": {
+        "celsius": 19.76,
+        "fahrenheit": 67.57
+      },
+      "dataPoints": [
+        {
+          "timestamp": "2024-12-17T22:45:00.000Z",
+          "value": {
+            "celsius": 18.5,
+            "fahrenheit": 65.3
+          }
+        }
+      ]
+    },
+    "humidity": {
+      "timeSeriesType": "dataPoints",
+      "valueType": "percentage",
+      "min": {
+        "percentage": 40
+      },
+      "max": {
+        "percentage": 60
+      },
+      "dataPoints": [
+        {
+          "timestamp": "2024-12-17T22:45:00.000Z",
+          "value": 50
+        }
+      ]
+    },
+    "heating": {
+      "timeSeriesType": "dataPoints",
+      "valueType": "duration",
+      "dataPoints": [
+        {
+          "timestamp": "2024-12-17T22:45:00.000Z",
+          "value": 3600
+        }
+      ]
+    }
+  }
+}
+```

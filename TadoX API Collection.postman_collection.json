@@ -747,6 +747,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Daily Zone Report",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://my.tado.com/api/v2/homes/{{homeId}}/zones/{{zoneId}}/dayReport",
+					"protocol": "https",
+					"host": [
+						"my",
+						"tado",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"homes",
+						"{{homeId}}",
+						"zones",
+						"{{zoneId}}",
+						"dayReport"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -794,6 +825,11 @@
 		},
 		{
 			"key": "deviceId",
+			"value": "set-by-collection",
+			"type": "string"
+		},
+		{
+			"key": "zoneId",
 			"value": "set-by-collection",
 			"type": "string"
 		}
