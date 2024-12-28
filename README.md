@@ -51,6 +51,29 @@ You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapis
 
 ## API Endpoints
 
+- [Login](#login)
+- [Get Homes](#get-homes)
+- [Get Home Data](#get-home-data)
+- [Get Rooms](#get-rooms)
+- [Get Features](#get-features)
+- [Get Room Details](#get-room-details)
+- [Get Rooms and Devices](#get-rooms-and-devices)
+- [Set Manual Control](#set-manual-control)
+- [Set Open Window](#set-open-window)
+- [Delete Open Window](#delete-open-window)
+- [Set Boost](#set-boost)
+- [Resume Schedule](#resume-schedule)
+- [Update Device Temperature Offset](#update-device-temperature-offset)
+- [Get Weather](#get-weather)
+- [Get Mobile Devices](#get-mobile-devices)
+- [Get Mobile Device Settings](#get-mobile-device-settings)
+- [Get Installations](#get-installations)
+- [Get Devices](#get-devices)
+- [Get Device Temperature Offset](#get-device-temperature-offset)
+- [Get Device Humidity Offset](#get-device-humidity-offset)
+- [Update Device Humidity Offset](#update-device-humidity-offset)
+- [Get Day Report](#get-day-report)
+
 ### Login
 
 **Description**: Logs in to the Tado service and obtains an access token.
