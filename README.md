@@ -47,6 +47,8 @@ For APIs with parameters such as `roomId` or `deviceId`, the values should be re
 
 For those using Python, you might find the [PyTado](https://github.com/svobop/PyTado/tree/master) repository useful. It provides a comprehensive set of tools for interacting with the Tado API using Python.
 
+You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapispec-v2) helpful. This repository contains an OpenAPI specification for the Tado API, allowing for better understanding and interaction with Tado's services.
+
 ## API Endpoints
 
 ### Login
