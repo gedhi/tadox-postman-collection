@@ -8,6 +8,282 @@
 	},
 	"item": [
 		{
+			"name": "Set Manual Control",
+			"item": [
+				{
+					"name": "ON",
+					"item": [
+						{
+							"name": "Timer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"setting\": {\n        \"power\": \"ON\",\n        \"isBoost\": false,\n        \"temperature\": {\n            \"value\": 22.0\n        }\n    },\n    \"termination\": {\n        \"type\": \"TIMER\",\n        \"durationInSeconds\": 600\n    }\n}"
+								},
+								"url": {
+									"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+									"protocol": "https",
+									"host": [
+										"hops",
+										"tado",
+										"com"
+									],
+									"path": [
+										"homes",
+										"{{homeId}}",
+										"rooms",
+										"{{roomId}}",
+										"manualControl"
+									],
+									"query": [
+										{
+											"key": "ngsw-bypass",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Next time block",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"setting\": {\n        \"power\": \"ON\",\n        \"isBoost\": false,\n        \"temperature\": {\n            \"value\": 22.0\n        }\n    },\n    \"termination\": {\n        \"type\": \"NEXT_TIME_BLOCK\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+									"protocol": "https",
+									"host": [
+										"hops",
+										"tado",
+										"com"
+									],
+									"path": [
+										"homes",
+										"{{homeId}}",
+										"rooms",
+										"{{roomId}}",
+										"manualControl"
+									],
+									"query": [
+										{
+											"key": "ngsw-bypass",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Manual",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"setting\": {\n        \"power\": \"ON\",\n        \"isBoost\": false,\n        \"temperature\": {\n            \"value\": 22.0\n        }\n    },\n    \"termination\": {\n        \"type\": \"MANUAL\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+									"protocol": "https",
+									"host": [
+										"hops",
+										"tado",
+										"com"
+									],
+									"path": [
+										"homes",
+										"{{homeId}}",
+										"rooms",
+										"{{roomId}}",
+										"manualControl"
+									],
+									"query": [
+										{
+											"key": "ngsw-bypass",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Turn on manual control"
+				},
+				{
+					"name": "OFF",
+					"item": [
+						{
+							"name": "Timer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"setting\": {\n        \"power\": \"OFF\",\n        \"isBoost\": false,\n        \"temperature\": null\n    },\n    \"termination\": {\n        \"type\": \"TIMER\",\n        \"durationInSeconds\": 600\n    }\n}"
+								},
+								"url": {
+									"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+									"protocol": "https",
+									"host": [
+										"hops",
+										"tado",
+										"com"
+									],
+									"path": [
+										"homes",
+										"{{homeId}}",
+										"rooms",
+										"{{roomId}}",
+										"manualControl"
+									],
+									"query": [
+										{
+											"key": "ngsw-bypass",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Next time block",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"setting\": {\n        \"power\": \"OFF\",\n        \"isBoost\": false,\n        \"temperature\": null\n    },\n    \"termination\": {\n        \"type\": \"NEXT_TIME_BLOCK\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+									"protocol": "https",
+									"host": [
+										"hops",
+										"tado",
+										"com"
+									],
+									"path": [
+										"homes",
+										"{{homeId}}",
+										"rooms",
+										"{{roomId}}",
+										"manualControl"
+									],
+									"query": [
+										{
+											"key": "ngsw-bypass",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Manual",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"setting\": {\n        \"power\": \"OFF\",\n        \"isBoost\": false,\n        \"temperature\": null\n    },\n    \"termination\": {\n        \"type\": \"MANUAL\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
+									"protocol": "https",
+									"host": [
+										"hops",
+										"tado",
+										"com"
+									],
+									"path": [
+										"homes",
+										"{{homeId}}",
+										"rooms",
+										"{{roomId}}",
+										"manualControl"
+									],
+									"query": [
+										{
+											"key": "ngsw-bypass",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Turn off manual control"
+				}
+			],
+			"description": "Sets manual control for a specific room."
+		},
+		{
 			"name": "Login",
 			"event": [
 				{
@@ -265,49 +541,6 @@
 						"homes",
 						"{{homeId}}",
 						"roomsAndDevices"
-					],
-					"query": [
-						{
-							"key": "ngsw-bypass",
-							"value": "true"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Set Manual Control",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"setting\":{\"power\":\"OFF\",\"isBoost\":false,\"temperature\":null},\"termination\":{\"type\":\"TIMER\",\"durationInSeconds\":600}}"
-				},
-				"url": {
-					"raw": "https://hops.tado.com/homes/{{homeId}}/rooms/{{roomId}}/manualControl?ngsw-bypass=true",
-					"protocol": "https",
-					"host": [
-						"hops",
-						"tado",
-						"com"
-					],
-					"path": [
-						"homes",
-						"{{homeId}}",
-						"rooms",
-						"{{roomId}}",
-						"manualControl"
 					],
 					"query": [
 						{

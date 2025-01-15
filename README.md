@@ -376,11 +376,13 @@ You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapis
 }
 ```
 
-**Output**:
-```json
-{
-  "status": "success"
-}
+**Possible values**:
+- `power`: `ON`, `OFF`
+- `type`: `TIMER`, `NEXT_TIME_BLOCK`, `MANUAL`
+
+**Response code**:
+```
+204
 ```
 
 ### Set Open Window
