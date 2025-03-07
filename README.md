@@ -32,14 +32,19 @@ Happy coding! 💻✨
 
 ## Environment Variables
 
-Make sure to configure the following environment variables in Postman:
+~~Make sure to configure the following environment variables in Postman:~~
 
-- `TADO_USERNAME`: Your Tado account username.
-- `TADO_PASSWORD`: Your Tado account password.
+~~- `TADO_USERNAME`: Your Tado account username.~~
+~~- `TADO_PASSWORD`: Your Tado account password.~~
+
+It is no longer necessary to configure these environment variables as Tado has changed the login logic. For more information, please refer to this [link](https://support.tado.com/en/articles/8565472-how-do-i-authenticate-to-access-the-rest-api).
+
 
 ## Workflow
 
-The workflow always starts with the `Login` request. The token is automatically set in the collection and has a duration of 10 minutes (600 seconds). After that, call `Get Homes` to retrieve the home ID, which can then be used to make other requests.
+The workflow always starts with the `Login` request (firt time).
+Call `Login`, authorize the device with your Tado credentials in a browser (user `verification_uri_complete` from `Login`), and then call the `Get Token`.
+The token is automatically set in the collection and has a duration of 10 minutes (600 seconds). After that, call `Get Homes` to retrieve the home ID, which can then be used to make other requests.
 
 For APIs with parameters such as `roomId` or `deviceId`, the values should be retrieved from the `Get Rooms` or `Get Rooms and Devices` requests.
 
@@ -51,7 +56,9 @@ You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapis
 
 ## API Endpoints
 
-- [Login](#login)
+- [Get Login](#get-login)
+- [Get Token](#get-token)
+- [Refresh Token](#refresh-token)
 - [Get Homes](#get-homes)
 - [Get Home Data](#get-home-data)
 - [Get Rooms](#get-rooms)
@@ -76,11 +83,11 @@ You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapis
 
 ### Login
 
-**Description**: Logs in to the Tado service and obtains an access token.
+**Description**: Initiates the device code grant flow to obtain a device code.
 
 **Method**: POST
 
-**URL**: `https://auth.tado.com/oauth/token`
+**URL**: `https://login.tado.com/oauth2/device_authorize`
 
 **Headers**:
 - `Content-Type: application/x-www-form-urlencoded`
@@ -88,20 +95,81 @@ You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapis
 **Body**:
 ```json
 {
-  "client_id": "tado-web-app",
-  "client_secret": "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc",
-  "grant_type": "password",
-  "scope": "home.user",
-  "username": "{{TADO_USERNAME}}",
-  "password": "{{TADO_PASSWORD}}"
+  "client_id": "1bb50063-6b0c-4d11-bd99-387f4a91cc46",
+  "scope": "offline_access"
 }
 ```
-
 **Output**:
 ```json
 {
-  "access_token": "your_access_token",
+  "device_code": "your_device_code",
+  "user_code": "your_user_code",
+  "verification_uri_complete": "https://auth.tado.com/device",
   "expires_in": 600
+}
+```
+
+### Get Token
+
+**Description**: Exchanges the device code for an access token.
+
+**Method**: POST
+
+**URL**: `https://login.tado.com/oauth2/token`
+
+**Headers**:
+- `Content-Type: application/x-www-form-urlencoded`
+
+**Body**:
+```json
+{
+  "client_id": "1bb50063-6b0c-4d11-bd99-387f4a91cc46",
+  "device_code": "{{device_code}}",
+  "grant_type": "urn:ietf:params:oauth:grant-type:device_code"
+}
+```
+**Output**:
+```json
+{
+    "access_token": "access-token",
+    "expires_in": 600,
+    "refresh_token": "refresh-token",
+    "refresh_token_id": "refresh-token-id",
+    "scope": "offline_access",
+    "token_type": "Bearer",
+    "userId": "user-id"
+}
+```
+
+### Refresh Token
+
+**Description**: Refreshes the access token using the refresh token.
+
+**Method**: POST
+
+**URL**: `https://login.tado.com/oauth2/token`
+
+**Headers**:
+- `Content-Type: application/x-www-form-urlencoded`
+
+**Body**:
+```json
+{
+  "client_id": "1bb50063-6b0c-4d11-bd99-387f4a91cc46",
+  "grant_type": "refresh_token",
+  "refresh_token": "refresh-token-from-previous-call"
+}
+```
+**Output**:
+```json
+{
+    "access_token": "access-token",
+    "expires_in": 600,
+    "refresh_token": "refresh-token",
+    "refresh_token_id": "refresh-token-id",
+    "scope": "offline_access",
+    "token_type": "Bearer",
+    "userId": "user-id"
 }
 ```
 
@@ -748,3 +816,21 @@ You may also find [tado-openapispec-v2](https://github.com/kritsel/tado-openapis
   }
 }
 ```
+
+### Get Login
+
+**Description**: Initiates the device code grant flow to obtain a device code.
+
+**Method**: POST
+
+**URL**: `https://auth.tado.com/oauth/device/code`
+
+**Headers**:
+- `Content-Type: application/x-www-form-urlencoded`
+
+**Body**:
+```json
+{
+  "client_id": "tado-web-app",
+  "scope": "home.user"
+}

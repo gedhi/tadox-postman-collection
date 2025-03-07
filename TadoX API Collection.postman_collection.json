@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63ecc612-dcb1-4225-98c1-4c1acc45f6fc",
+		"_postman_id": "180a57f1-cf5a-45fe-be1d-c3cfe1f34cdc",
 		"name": "TadoX API Collection",
 		"description": "Collection of API requests for TadoX",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -291,7 +291,8 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();",
-							"pm.collectionVariables.set(\"access_token\", jsonData.access_token);"
+							"pm.collectionVariables.set(\"token\", jsonData.access_token);",
+							"pm.collectionVariables.set(\"device_code\", jsonData.device_code);"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -300,51 +301,142 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
 							"key": "client_id",
-							"value": "tado-web-app"
-						},
-						{
-							"key": "client_secret",
-							"value": "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc"
-						},
-						{
-							"key": "grant_type",
-							"value": "password"
+							"value": "1bb50063-6b0c-4d11-bd99-387f4a91cc46",
+							"type": "text"
 						},
 						{
 							"key": "scope",
-							"value": "home.user"
-						},
-						{
-							"key": "username",
-							"value": "{{TADO_USERNAME}}"
-						},
-						{
-							"key": "password",
-							"value": "{{TADO_PASSWORD}}"
+							"value": "offline_access",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://auth.tado.com/oauth/token",
+					"raw": "https://login.tado.com/oauth2/device_authorize",
 					"protocol": "https",
 					"host": [
-						"auth",
+						"login",
 						"tado",
 						"com"
 					],
 					"path": [
-						"oauth",
+						"oauth2",
+						"device_authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token 1th",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"token\", jsonData.access_token);",
+							"pm.collectionVariables.set(\"refresh_token\", jsonData.refresh_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "1bb50063-6b0c-4d11-bd99-387f4a91cc46",
+							"type": "text"
+						},
+						{
+							"key": "device_code",
+							"value": "{{device_code}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "urn:ietf:params:oauth:grant-type:device_code",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.tado.com/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"tado",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token Refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"token\", jsonData.access_token);",
+							"pm.collectionVariables.set(\"refresh_token\", jsonData.refresh_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "1bb50063-6b0c-4d11-bd99-387f4a91cc46",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.tado.com/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"tado",
+						"com"
+					],
+					"path": [
+						"oauth2",
 						"token"
 					]
 				}
@@ -1037,16 +1129,6 @@
 	],
 	"variable": [
 		{
-			"key": "TADO_USERNAME",
-			"value": "put-your-tado-username",
-			"type": "string"
-		},
-		{
-			"key": "TADO_PASSWORD",
-			"value": "put-your-tado-password",
-			"type": "string"
-		},
-		{
 			"key": "access_token",
 			"value": "set-by-collection",
 			"type": "string"
@@ -1064,6 +1146,21 @@
 		{
 			"key": "zoneId",
 			"value": "set-by-collection",
+			"type": "string"
+		},
+		{
+			"key": "device_code",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
 			"type": "string"
 		}
 	]
